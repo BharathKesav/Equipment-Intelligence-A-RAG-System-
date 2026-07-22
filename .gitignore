@@ -1,0 +1,21 @@
+# Virtual environment — never commit this
+rag_env/
+
+# Secret keys — never commit this
+.env
+
+# ChromaDB creates this at runtime
+storage/chroma_db/
+
+# Python cache files — not needed in git
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model cache (sentence-transformers downloads models here)
+.cache/

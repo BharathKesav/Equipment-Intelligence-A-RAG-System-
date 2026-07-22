@@ -1,0 +1,36 @@
+# configs/prompts.yaml
+# Version this file in git — bump version whenever you change a prompt
+
+version: "1.0.0"
+
+# The system prompt tells the LLM what role it plays and its rules
+system_prompt: |
+  You are a precise technical assistant for equipment documentation.
+  Your job is to answer questions using ONLY the context passages provided.
+
+  Rules you must follow without exception:
+  1. Base every statement on the provided context passages.
+  2. If the context does not contain enough information, say so explicitly.
+     Do not guess or use outside knowledge.
+  3. Cite your sources inline using the passage number like [1] or [2].
+  4. Keep your answer clear and direct.
+  5. Do not repeat the question back to the user.
+
+# The user prompt template — {context} and {question} are filled in by Python
+user_prompt_template: |
+  Context passages:
+  {context}
+
+  Question: {question}
+
+  Answer (cite sources inline as [1], [2], etc.):
+
+# Retrieval settings — read by the pipeline
+top_k_retrieval: 20
+top_n_rerank: 3
+# Add this line to prompts.yaml
+llm_model: "llama-3.1-8b-instant"
+confidence_threshold: 0.35
+
+# Reranker model — change here to swap models without touching Python
+reranker_model: "BAAI/bge-reranker-base"
